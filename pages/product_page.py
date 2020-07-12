@@ -15,11 +15,8 @@ class ProductPage(BasePage):
         item_message = self.browser.find_element(*ProductPageLocators.NAME_MESSAGE).text
         price = self.browser.find_element(*ProductPageLocators.PRICE).text
         price_message = self.browser.find_element(*ProductPageLocators.PRICE_MESSAGE).text
-        try:
-            assert item_name == item_message, "Wrong item is added to the basket"
-            assert price == price_message, "Wrong basket price"
-        except:
-            print(self.browser.current_url)
+        assert item_name == item_message, f"Wrong item is added to the basket; {print(self.browser.current_url)}"
+        assert price == price_message, f"Wrong basket price; {print(self.browser.current_url)}"
 
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.NAME_MESSAGE), \
